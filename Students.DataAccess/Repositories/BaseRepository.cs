@@ -35,6 +35,7 @@ namespace Students.DataAccess.Repositories
         public virtual void Delete(int Id)
         {
             var entity = this.GetOne(Id);
+            entity.IsActive = false;
             this.Update(entity);
         }
 
@@ -66,6 +67,7 @@ namespace Students.DataAccess.Repositories
 
         public virtual T Update(T entity)
         {
+            entity.UpdateDate = DateTime.Now;
             this.RepositoryContext.Set<T>().Update(entity);
             this.RepositoryContext.SaveChanges();
             return entity;

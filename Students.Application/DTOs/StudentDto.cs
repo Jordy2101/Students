@@ -1,13 +1,13 @@
-﻿using Students.Domain.Base;
+﻿using Students.Application.DTOs.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Students.Domain.Students
+namespace Students.Application.DTOs
 {
-    public class Student : BaseEntity
+    public class StudentDto : BaseDto
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
