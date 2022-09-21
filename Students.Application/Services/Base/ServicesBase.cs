@@ -1,6 +1,7 @@
 ﻿using Students.Application.DTOs.Base;
 using Students.Application.Services.Base.Contract;
 using Students.DataAccess.Repositories.Contract;
+using Students.Domain.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Students.Application.Services.Base
 {
-    public class ServicesBase<T> : IServicesBase<T> where T : BaseDto, new()
+    public class ServicesBase<T> : IServicesBase<T> where T : BaseEntity, new()
     {
         protected readonly IBaseRepository<T> _repository;
         public ServicesBase(IBaseRepository<T> repository)

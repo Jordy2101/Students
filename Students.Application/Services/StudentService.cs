@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Students.Application.Services
 {
-    public class StudentService : ServicesBase<StudentDto>
+    public class StudentService : ServicesBase<Student>
     {
-        public StudentService(IBaseRepository<StudentDto> repository ) : base(repository)
+        public StudentService(IBaseRepository<Student> repository ) : base(repository)
         {
         }
     }
