@@ -8,6 +8,9 @@ namespace Students.Application.MessageCodes
 {
     public struct MessageCodes
     {
+
+        public static readonly string EmptyCollections = "No records found to display or process!";
+
         public static string FieldEmpty(object property)
         {
             return $"This field {property} is required";
