@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Students.Application.DTOs;
+using Students.Application.Services;
 using Students.Application.Services.Base.Contract;
 using System;
 using System.Collections.Generic;
@@ -14,7 +16,7 @@ namespace Students.Application.DependencyInjection
         public static void AddServices(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddScoped<IServicesBase<SystemParameters>, SystemParametersService>();
+            services.AddScoped<IServicesBase<StudentDto>, StudentService>();
         }
     }
 }

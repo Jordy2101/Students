@@ -13,5 +13,7 @@ namespace Students.Domain.Students
         public string LastName { get; set; }
         public string Email { get; set; }
         public int Age { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string Nationality { get; set; }
     }
 }

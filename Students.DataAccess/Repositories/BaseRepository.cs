@@ -22,12 +22,15 @@ namespace Students.DataAccess.Repositories
         }
         public virtual int Create(T entity)
         {
+            entity.IsActive = true;
+            entity.CreateDate = DateTime.Now;
             var result = entities.Add(entity);
             this.RepositoryContext.SaveChanges();
             return Convert.ToInt32(result.Property("Id").CurrentValue.ToString());
         }
         public virtual void CreateRange(List<T> entitys)
         {
+            foreach (var item in entitys) { item.CreateDate = DateTime.Now; item.IsActive = true; }
             entities.AddRange(entitys);
             this.RepositoryContext.SaveChanges();
         }
@@ -75,6 +78,7 @@ namespace Students.DataAccess.Repositories
 
         public virtual void UpdateRange(List<T> entity)
         {
+            foreach (var item in entity) { item.UpdateDate = DateTime.Now; }
             entities.UpdateRange(entity);
             this.RepositoryContext.SaveChanges();
         }
