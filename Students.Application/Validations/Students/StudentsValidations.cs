@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Students.Application.DTOs;
+using Students.Domain.Students;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Students.Application.Validations.Students
 {
-    public class StudentsValidations : AbstractValidator<StudentDto>
+    public class StudentsValidations : AbstractValidator<Student>
     {
         public StudentsValidations()
         {

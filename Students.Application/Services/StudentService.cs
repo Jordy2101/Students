@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.Extensions.Options;
 using Students.Application.DTOs;
 using Students.Application.Filters;
 using Students.Application.Paged;
 using Students.Application.Services.Base;
 using Students.Application.Services.Contract;
+using Students.Application.Validations.Students;
 using Students.DataAccess.Repositories.Contract;
 using Students.Domain.Students;
 using System;
@@ -25,9 +28,21 @@ namespace Students.Application.Services
 
         public override int Create(Student entity)
         {
+            var validator = new StudentsValidations();
 
+            var result = validator.Validate(entity);
 
-            return base.Create(entity); 
+            if (!result.IsValid)
+            {
+                foreach (var failure in result.Errors)
+                {
+                    if (failure.CustomState is Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+            return base.Create(entity);
         }
 
         public PagedList<StudentDto> GetStudentsPaged(StudentsFilter filter)
@@ -42,7 +57,6 @@ namespace Students.Application.Services
                                                                || c.Nationality.Contains(filter.keywrod) || c.Email.Contains(filter.keywrod)) : data;
 
                 data = !data.Any()? throw new ArgumentException(MessageCodes.MessageCodes.EmptyCollections) : data;
-
 
                 var mapEntity = _Mapper.Map<IQueryable<StudentDto>>(data);
 
