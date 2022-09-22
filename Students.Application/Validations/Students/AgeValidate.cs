@@ -13,7 +13,7 @@ namespace Students.Application.Validations.Students
     {
         public AgeValidate()
         {
-            RuleFor(x => x.Age).Equal(0).WithMessage(MessageCodes.MessageCodes.FieldEmpty("Age"));
+            RuleFor(x => x.Age).NotEqual(0).WithMessage(MessageCodes.MessageCodes.FieldEmpty("Age"));
         }
     }
 }

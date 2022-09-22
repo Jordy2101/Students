@@ -14,8 +14,8 @@ namespace Students.Application.Validations.Students
     {
         public LastNameValidate()
         {
-            RuleFor(x => x.LastName).Empty().WithMessage(MessageCodes.MessageCodes.FieldEmpty("LastName"))
-                                    .Length(5, 40).WithMessage(MessageCodes.MessageCodes.FieldExcess(5, 40))
+            RuleFor(x => x.LastName).NotEmpty().WithMessage(MessageCodes.MessageCodes.FieldEmpty("LastName"))
+                                    .Length(5, 40).WithMessage(MessageCodes.MessageCodes.FieldExcess(2, 40, "LastName"))
                                     .NotEqual(x => x.FirstName).WithName("The First Name must be different from the LastName");
         }
     }

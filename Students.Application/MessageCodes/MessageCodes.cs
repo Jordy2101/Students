@@ -16,9 +16,9 @@ namespace Students.Application.MessageCodes
             return $"This field {property} is required";
         }
 
-        public static string FieldExcess(int beginning, int end)
+        public static string FieldExcess(int beginning, int end, object property)
         {
-            return $"The name must be between {beginning} and {end} characters long";
+            return $"The {property} must be between {beginning} and {end} characters long";
         }
     }
 }

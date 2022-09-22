@@ -13,8 +13,8 @@ namespace Students.Application.Validations.Students
     {
         public EmailValidate()
         {
-            RuleFor(x => x.Email).Empty().WithMessage(MessageCodes.MessageCodes.FieldEmpty("Email"))
-                                 .Length(5, 40).WithMessage(MessageCodes.MessageCodes.FieldExcess(5, 40));
+            RuleFor(x => x.Email).NotEmpty().WithMessage(MessageCodes.MessageCodes.FieldEmpty("Email"))
+                                 .Length(5, 40).WithMessage(MessageCodes.MessageCodes.FieldExcess(5, 40, "Email"));
         }
     }
 }

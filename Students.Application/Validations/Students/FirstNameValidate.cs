@@ -13,8 +13,8 @@ namespace Students.Application.Validations.Students
     {
         public FirstNameValidate()
         {
-            RuleFor(x => x.FirstName).Empty().WithMessage(MessageCodes.MessageCodes.FieldEmpty("FirstName"))
-                                     .Length(5, 40).WithMessage(MessageCodes.MessageCodes.FieldExcess(5, 40));
+            RuleFor(x => x.FirstName).NotEmpty().WithMessage(MessageCodes.MessageCodes.FieldEmpty("FirstName"))
+                                     .Length(5, 40).WithMessage(MessageCodes.MessageCodes.FieldExcess(5, 40, "FirstName"));
         }
     }
 }

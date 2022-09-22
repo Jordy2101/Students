@@ -28,19 +28,16 @@ namespace Students.Application.Services
 
         public override int Create(Student entity)
         {
+            entity.Age = (DateTime.Now.Year - entity.DateOfBirth.Year);
+
             var validator = new StudentsValidations();
 
             var result = validator.Validate(entity);
 
             if (!result.IsValid)
             {
-                foreach (var failure in result.Errors)
-                {
-                    if (failure.CustomState is Exception ex)
-                    {
-                        throw ex;
-                    }
-                }
+                var errors = string.Join(" /n ", result.Errors);
+                throw new ArgumentException(errors);
             }
             return base.Create(entity);
         }

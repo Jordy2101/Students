@@ -13,8 +13,8 @@ namespace Students.Application.Validations.Students
     {
         public NationalityValidate()
         {
-            RuleFor(x => x.Nationality).Empty().WithMessage(MessageCodes.MessageCodes.FieldEmpty("Nationality"))
-                                       .Length(5, 40).WithMessage(MessageCodes.MessageCodes.FieldExcess(5, 40));
+            RuleFor(x => x.Nationality).NotEmpty().WithMessage(MessageCodes.MessageCodes.FieldEmpty("Nationality"))
+                                       .Length(5, 40).WithMessage(MessageCodes.MessageCodes.FieldExcess(5, 40, "Nationality"));
         }
     }
 }
