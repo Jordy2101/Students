@@ -42,7 +42,7 @@ namespace Students.Application.Services
             return base.Create(entity);
         }
 
-        public PagedList<StudentDto> GetStudentsPaged(StudentsFilter filter)
+        public object GetStudentsPaged(StudentsFilter filter)
         {
             try
             {
@@ -55,11 +55,22 @@ namespace Students.Application.Services
 
                 data = !data.Any()? throw new ArgumentException(MessageCodes.MessageCodes.EmptyCollections) : data;
 
-                var mapEntity = _Mapper.Map<IQueryable<StudentDto>>(data);
+                var mapEntity = _Mapper.ProjectTo<StudentDto>(data);
 
                 var pagelist = PagedList<StudentDto>.Create(mapEntity, filter.PageNumber, filter.PageSize);
 
-                return pagelist;
+                var pagination = new
+                {
+                    totalCount = pagelist.TotalCount,
+                    pageSize = pagelist.PageSize,
+                    currentPage = pagelist.CurrentPage,
+                    totalPage = pagelist.TotalPages,
+                    HasNext = pagelist.HasNext,
+                    HasPrevious = pagelist.HasPrevious,
+                    data = pagelist
+                };
+
+                return pagination;
             }
             catch (Exception ex)
             {

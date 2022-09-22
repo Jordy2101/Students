@@ -11,6 +11,6 @@ namespace Students.Application.Services.Contract
 {
     public interface IStudentService
     {
-        PagedList<StudentDto> GetStudentsPaged(StudentsFilter filter);
+        object GetStudentsPaged(StudentsFilter filter);
     }
 }
